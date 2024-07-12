@@ -1,0 +1,24 @@
+#docs
+springdoc.api-docs.path=/api-docs
+springdoc.swagger-ui.path=/swagger-ui.html
+
+#server
+server.port= 9000
+
+# spring.jpa.hibernate.ddl-auto: specifies the strategy for creating and dropping database tables
+spring.jpa.hibernate.ddl-auto = update
+spring.jpa.show-sql=true
+
+spring.datasource.url = jdbc:mysql://serve-mysql:3306/db_ubication
+
+# spring.datasource.username: specifies the username for the Mysql database connection
+spring.datasource.username = root
+
+# spring.datasource.password: specifies the password for the Mysql database connection
+spring.datasource.password = abcd1234
+
+#Jwt Security
+jwt.secret = roITo2yN5V8W6RbcVJ0GvjKjFbfNgs2DRirmwdpbBTQ48mSudfltuMGxmUCIjYZOIUeBSZqMUcdNRXhYgY8w==
+jwt.expiration = 3600
+
+# spring.security.user.password = dfc59d41-0640-4bac-b4bd-e4ca891eb870
