@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("api/countrys")
+@RequestMapping("api/country")
 public class CountryController extends ABaseController<Country, ICountryService> {
     public CountryController(ICountryService service) {
         super(service, "Country");
