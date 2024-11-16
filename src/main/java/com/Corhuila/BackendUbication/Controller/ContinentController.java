@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("api/continent")
+@RequestMapping("api/continent-data")
 public class ContinentController extends ABaseController<Continent, IContinentService> {
     public ContinentController(IContinentService service) {
         super(service, "Continent");
