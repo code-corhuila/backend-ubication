@@ -30,6 +30,9 @@ public abstract class ABaseEntity {
     @Column(name = "deleted_by", nullable = true)
     private Long deletedBy;
 
+    @Column(name = "code_auth", nullable = false)
+    private Boolean codeAuth;
+
     public Long getId() {
         return id;
     }
@@ -92,5 +95,13 @@ public abstract class ABaseEntity {
 
     public void setDeletedBy(Long deletedBy) {
         this.deletedBy = deletedBy;
+    }
+
+    public Boolean getCodeAuth() {
+        return codeAuth;
+    }
+
+    public void setCodeAuth(Boolean codeAuth) {
+        this.codeAuth = codeAuth;
     }
 }
