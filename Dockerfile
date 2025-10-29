@@ -18,10 +18,8 @@ ARG MAVEN_VERSION=3.8.8
 ARG USER_HOME_DIR="/root"
 ARG BASE_URL=https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
-# Establecer DNS temporal y descargar Maven desde un mirror estable
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
-  && echo "nameserver 1.1.1.1" >> /etc/resolv.conf \
-  && mkdir -p /usr/share/maven /usr/share/maven/ref \
+# Instalar Maven (sin tocar resolv.conf)
+RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
   && rm -f /tmp/apache-maven.tar.gz \
@@ -34,8 +32,6 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 # Copiar scripts y configuraciones de Maven
 COPY ./devops/docs/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY ./devops/docs/settings-docker.xml /usr/share/maven/ref/
-
-# Establecer permisos de ejecución para el script de entrada de Maven
 RUN chmod +x /usr/local/bin/mvn-entrypoint.sh
 
 # Establecer el directorio de trabajo
