@@ -16,9 +16,10 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 # Variables para Maven
 ARG MAVEN_VERSION=3.8.8
 ARG USER_HOME_DIR="/root"
-ARG BASE_URL=https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries
+# ⬇️ único cambio: usar el archivo histórico de Apache
+ARG BASE_URL=https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries
 
-# Instalar Maven (sin tocar resolv.conf)
+# Instalar Maven
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
