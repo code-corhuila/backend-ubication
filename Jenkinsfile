@@ -5,7 +5,7 @@ pipeline {
     environment {
        DATE_NOW=''
        DOCKER_TAG ="($DATE_NOW.$BUILD_NUMBER | head -c 8)" 
-       REPOSITORY_URI="backend-security"
+       REPOSITORY_URI="backend-ubication"
        REPOSITORY_URI_APP=""
     }
     stages {
