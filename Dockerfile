@@ -16,10 +16,12 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 # Variables para Maven
 ARG MAVEN_VERSION=3.8.8
 ARG USER_HOME_DIR="/root"
-ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
+ARG BASE_URL=https://downloads.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries
 
-# Instalar Maven
-RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
+# Establecer DNS temporal y descargar Maven desde un mirror estable
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf \
+  && echo "nameserver 1.1.1.1" >> /etc/resolv.conf \
+  && mkdir -p /usr/share/maven /usr/share/maven/ref \
   && curl -fsSL -o /tmp/apache-maven.tar.gz ${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
   && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
   && rm -f /tmp/apache-maven.tar.gz \
